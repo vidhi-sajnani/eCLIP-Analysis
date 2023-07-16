@@ -26,8 +26,8 @@ First, we unzip the raw input files. Then we use umi-tools to deal with Unique M
 Input: .umi.fastq files in umi folder<br> 
 Output: .adapt1.fastq un adapt1 folder<be>
 <br>
-Input: .adapt1.fastq un adapt1 folder<br>
-Output: .adapt2.fastq un adapt2 folder<br>
+Input: .adapt1.fastq in adapt1 folder<br>
+Output: .adapt2.fastq in adapt2 folder<br>
 <br>
 Cutadapt finds and removes adapter sequences, primers, poly-A tails, and other types of unwanted sequences from your high-throughput sequencing reads. We cut the adaptors twice.
 ## Indexing
@@ -35,9 +35,23 @@ Download the .fa.gz file using wget of the Genome of your respective organism in
 Use these files in the 6_index_gen.sh script to generate index for Genome and Replicated Elements.
 
 ## Star Alignment
-Input: .adapt2.fastq un adapt2 folder<br>
-Output: .adapt2.fastq un adapt2 folder<br>
+Input: .adapt2.fastq in adapt2 folder<br>
+Output: files in align, aligned-rep and dedup folders along with bam, bai files in Processed<br>
 <br>
+First part of aligning is with the Replicated Elements. For the second part, aligning with Genome, we require a conda environment. Then, module load fastq-tools. To determine where on the human genome our reads originated from, we will align our reads to the reference genome using STAR (Spliced Transcripts Alignment to a Reference). STAR is an aligner designed to specifically address many of the challenges of RNA-seq data mapping using a strategy to account for spliced alignments.
+
+## PureCLIP
+Input: .bam and .bai files in Processed folder<br>
+Output: .bed file in Processed<br>
+<br>
+For bioconda: <br>
+conda config --add channels defaults<br>
+conda config --add channels bioconda<br>
+conda config --add channels conda-forge<br>
+conda config --set channel_priority strict<br>
+Then, conda install pureclip. Change your file names in the PureLCLIP script and run it to obtain the bed file. 
+You can also run the following command for the .bed file used in RCAS:
+'awk 'BEGIN{FS=OFS="\t"} {print $1, ($2-49), ($3+49), $4, $5, $6}' PureCLIP.crosslink_sites_human.bed > PureCLIP.crosslink_sites_for_RCAS_human.bed'
 
 
 
