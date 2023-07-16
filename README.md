@@ -43,7 +43,7 @@ Output: files in align, aligned-rep and dedup folders along with bam, bai files 
 <br>
 First part of aligning is with the Replicated Elements. For the second part, aligning with Genome, we require a conda environment. Then, module load fastq-tools. To determine where on the human genome our reads originated from, we will align our reads to the reference genome using STAR (Spliced Transcripts Alignment to a Reference). STAR is an aligner designed to specifically address many of the challenges of RNA-seq data mapping using a strategy to account for spliced alignments.
 
-## PureCLIP
+## PureCLIP- Peak Analysis
 Input: .bam and .bai files in Processed folder<br>
 Output: .bed file in Processed<br>
 <br>
@@ -60,8 +60,12 @@ You can run the following command for the annotated .bed file with gene names (r
 Use the following code to check the qulity of your read:<br>
 `samtools flagstat -@ 12 1_mESC_MED12_wt_S1/mESC_MED12_wt_S1_merged.aligned.sorted.bam`<br>
 
-## Meme
-
+## Meme- Motifs
+Use https://meme-suite.org/meme/doc/install.html?man_type=web#quick_src to install Meme and then run the following command to convert the fasta genome file to bed file<be>
+`module load bedtools`<br>
+`bedtools getfasta -fi ../../../Genome/mm10/Mus_musculus.GRCm39.dna_rm.primary_assembly.fa -fo mESC_MED12_mut_D_S2.fasta -bed ../../Data/Processed/2_mESC_MED12_mut_D_S2/PureCLIP.crosslink_sites_for_RCAS_mus.bed` <br>
+Then run the following code to obtain motifs:<br>
+`~/meme/bin/meme -dna -minw 5 -maxw 15 -oc meme2 mESC_MED12_mut_D_S2.fasta -nmotifs 10`
 
 
 
