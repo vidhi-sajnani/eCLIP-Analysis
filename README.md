@@ -54,10 +54,13 @@ conda config --add channels conda-forge<br>
 conda config --set channel_priority strict<br>
 Then, conda install pureclip. Change your file names in the PureLCLIP script and run it to obtain the bed file. 
 You can run the following command for the .bed file used in RCAS:<br>
-`awk 'BEGIN{FS=OFS="\t"} {print $1, ($2-49), ($3+49), $4, $5, $6}' PureCLIP.crosslink_sites_human.bed > PureCLIP.crosslink_sites_for_RCAS_human.bed`
+`awk 'BEGIN{FS=OFS="\t"} {print $1, ($2-49), ($3+49), $4, $5, $6}' PureCLIP.crosslink_sites_human.bed > PureCLIP.crosslink_sites_for_RCAS_human.bed`<br>
 You can run the following command for the annotated .bed file with gene names (requires gene_loc bed file) used in Enrichment Analysis:<br>
-`awk 'BEGIN{FS=OFS="\t"} {print $1, ($2-49), ($3+49), $4, $5, $6}' PureCLIP.crosslink_sites_mus_musculus.bed | bedtools intersect -a - -b ../../../../Genome/gene_loc_file.bed -wa -wb | cut -f1,2,3,4,10,11 | sed "s/;//g" > annotated3.bed`
+`awk 'BEGIN{FS=OFS="\t"} {print $1, ($2-49), ($3+49), $4, $5, $6}' PureCLIP.crosslink_sites_mus_musculus.bed | bedtools intersect -a - -b ../../../../Genome/gene_loc_file.bed -wa -wb | cut -f1,2,3,4,10,11 | sed "s/;//g" > annotated3.bed`<br>
+Use the following code to check the qulity of your read:<br>
+`samtools flagstat -@ 12 1_mESC_MED12_wt_S1/mESC_MED12_wt_S1_merged.aligned.sorted.bam`<br>
 
+## Meme
 
 
 
