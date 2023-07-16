@@ -17,3 +17,6 @@ A list of all tools which were utilised in the analysis of eCLIP-seq data.
    * dedup
    * genome 
 ## UMI
+Input: .gz input files in raw data folder
+Output: .umi.fastq files in umi folder
+First, we unzip the raw input files. Then we use umi-tools to deal with Unique Molecular Identifiers (UMIs)/Random Molecular Tags (RMTs) and single cell RNA-Seq cell barcodes.
