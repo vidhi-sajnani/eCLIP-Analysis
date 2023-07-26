@@ -72,11 +72,11 @@ Input: PureCLIP for RCAS .bed file and genome .gtf file<br>
 Output: Graphs<br>
 Run the peaks.R file with your required in puts and run. <br>
 Use the below code right after "overlaps" to obtain the names of the lncRNAs for example (can be used to obtain other information):<br>
-`lncr <- unique(overlaps[overlaps$gene_biotype=="lncRNA"]$gene_name)<br>
-lncr<br>
-for (element in lncr) {<br>
-  cat(element, "\n")<br>
-}`
+`lncr <- unique(overlaps[overlaps$gene_biotype=="lncRNA"]$gene_name)`<br>
+``lncr`<br>
+for (element in lncr)` {<br>
+  `cat(element, "\n")`<br>
+`}`<br>
 
 ## Enrichment Analysis using R
 Input: Annotated .bed file<br>
