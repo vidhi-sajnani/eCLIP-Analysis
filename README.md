@@ -2,10 +2,10 @@
 A list of all tools which were utilised in the analysis of eCLIP-seq data.
 
 ## Create the following folders:
--Genome
--Rep-Elements
--Data
--Scripts
+1. Genome
+2. Rep-Elements
+3. Data
+4. Scripts
 
 ## Create the following folders under *Data* to store the input and output files:
 1. Raw
