@@ -67,6 +67,22 @@ Use https://meme-suite.org/meme/doc/install.html?man_type=web#quick_src to insta
 Then run the following code to obtain motifs:<br>
 `~/meme/bin/meme -dna -minw 5 -maxw 15 -oc meme2 mESC_MED12_mut_D_S2.fasta -nmotifs 10`
 
+##Making Peak Graphs Using R
+Input: PureCLIP for RCAS .bed file and genome .gtf file<br>
+Output: Graphs<br>
+Run the peaks.R file with your required in puts and run. <br>
+Use the below code right after "overlaps" to obtain the names of the lncRNAs for example (can be used to obtain other information):<br>
+`lncr <- unique(overlaps[overlaps$gene_biotype=="lncRNA"]$gene_name)
+lncr
+for (element in lncr) {
+  cat(element, "\n")
+}`
+
+##Enrichment Analysis using R
+Input: Annotated .bed file<br>
+Output: Graph of Upregulated genes <br>
+Run the enrichment analysis R code. Use org.Mm.eg.db for mouse genome and org.Hs.eg.db for human genome. 
+
 
 
 
